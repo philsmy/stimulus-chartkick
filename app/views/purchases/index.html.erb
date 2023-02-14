@@ -1,0 +1,20 @@
+<div class='outside'
+  data-controller='purchases-chart'
+  data-purchases-chart-id-value='purchasesChart'
+  data-purchases-chart-url-value='<%= purchases_data_purchases_path %>'>
+  <div class='card mt-2'>
+    <div class='card-body'>
+      <%= column_chart Purchase.pluck(:purchased_at).map(&:to_date).sort.tally,
+                id: 'purchasesChart' %>
+    </div>
+  </div>
+  <div id='purchases' data-purchases-chart-target='purchases'>
+    <table class='table table-striped table-sm mt-2'>
+      <tbody>
+        <% @purchases.each do |purchase|%>
+          <%= render purchase %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

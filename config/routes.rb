@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root 'users#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :customers
+  resources :purchases do
+    get 'purchases_data', on: :collection
+  end
+  get 'charttest/index'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root 'purchases#index'
 end
